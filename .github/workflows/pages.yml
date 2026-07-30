@@ -1,0 +1,63 @@
+name: Deploy uploaded website to GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Prepare complete uploaded site
+        shell: bash
+        run: |
+          set -e
+          rm -rf _site
+          mkdir -p _site
+
+          # The uploaded archive is the Instant Professionals site. Mirror its
+          # existing public assets and service pages, then overlay the uploaded
+          # homepage committed in this repository.
+          wget --recursive \
+            --level=5 \
+            --page-requisites \
+            --convert-links \
+            --adjust-extension \
+            --no-host-directories \
+            --domains=instantprofessionals.in,www.instantprofessionals.in \
+            --directory-prefix=_site \
+            https://instantprofessionals.in/ || true
+
+          cp index.html _site/index.html
+          printf '%s\n' 'www.reskilltech.com' > _site/CNAME
+          touch _site/.nojekyll
+
+          test -s _site/index.html
+
+      - name: Upload static site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "_site"
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
