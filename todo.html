@@ -1,135 +1,40 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>To‑Do List</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    /* Small page-specific tweaks so todo.html looks fine with existing style.css */
-    .todo-container {
-      max-width: 720px;
-      margin: 2.5rem auto;
-      padding: 1.25rem;
-    }
-
-    .todo-controls {
-      display:flex;
-      gap:0.5rem;
-      margin-bottom:1rem;
-      align-items:center;
-    }
-
-    #new-task-input {
-      flex:1;
-      padding:0.6rem 0.75rem;
-      border-radius:6px;
-      border:1px solid var(--border);
-      font-size:0.95rem;
-    }
-
-    .task-list {
-      list-style:none;
-      margin-top:1rem;
-      padding:0;
-      display:flex;
-      flex-direction:column;
-      gap:0.5rem;
-    }
-
-    .task-item {
-      display:flex;
-      align-items:center;
-      gap:0.75rem;
-      padding:0.65rem;
-      border-radius:8px;
-      border:1px solid var(--border);
-      background: #fff;
-    }
-
-    .task-item.completed .task-text {
-      text-decoration:line-through;
-      color:var(--muted);
-    }
-
-    .task-text {
-      flex:1;
-      font-size:0.95rem;
-      word-break:break-word;
-    }
-
-    .task-actions button {
-      background:transparent;
-      border:0;
-      color:var(--muted);
-      cursor:pointer;
-      font-size:0.95rem;
-      padding:0.35rem 0.5rem;
-      border-radius:6px;
-    }
-
-    .task-actions button:hover { background: rgba(11,94,215,0.04); color:var(--primary); }
-
-    .filters { display:flex; gap:0.5rem; }
-
-    .filters button.active { background:var(--primary); color:#fff; border-color:var(--primary); }
-
-    .edit-input {
-      width:100%;
-      padding:0.4rem 0.5rem;
-      border-radius:6px;
-      border:1px solid var(--border);
-      font-size:0.95rem;
-    }
-
-    @media (max-width:600px) {
-      .todo-container { margin:1.25rem; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enrol | Reskill Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
-<body>
-
-<header class="header">
-  <div class="logo">Instant Professionals</div>
-  <nav class="nav">
-    <a href="index.html">Home</a>
-    <a href="services.html">Services</a>
-    <a href="pricing.html">Pricing</a>
-    <a href="contact.html">Contact</a>
-    <a href="todo.html">To‑Do</a>
-  </nav>
-</header>
-
-<main class="todo-container">
-  <section class="page-header">
-    <h1>To‑Do List</h1>
-    <p style="color:var(--muted); margin-top:0.5rem;">Simple to‑do app — tasks are saved in your browser (localStorage).</p>
-  </section>
-
-  <div class="todo-controls">
-    <input id="new-task-input" type="text" placeholder="Add a new task and press Enter" aria-label="New task">
-    <button id="add-btn" class="btn-primary">Add</button>
-    <button id="clear-completed" class="btn-secondary">Clear completed</button>
-  </div>
-
-  <div style="display:flex; justify-content:space-between; align-items:center; gap:1rem;">
-    <div class="filters" role="tablist" aria-label="Task filters">
-      <button class="btn-secondary filter-btn active" data-filter="all">All</button>
-      <button class="btn-secondary filter-btn" data-filter="active">Active</button>
-      <button class="btn-secondary filter-btn" data-filter="completed">Completed</button>
-    </div>
-    <div style="color:var(--muted); font-size:0.95rem;" id="remaining-count">0 items left</div>
-  </div>
-
-  <ul id="task-list" class="task-list" aria-live="polite"></ul>
-
-  <p style="color:var(--muted); margin-top:1rem; font-size:0.9rem;">Notes: Tasks persist in your browser. Clearing site data or using a private window may remove them.</p>
-</main>
-
-<footer class="footer">
-  <p>© <span id="year"></span> Instant Professionals.</p>
-</footer>
-
-<script src="todo.js"></script>
-</body>
-</html>
+<body data-page="enrol">
+<header class="site-header"><div class="wrap header-inner">
+<a class="logo" href="index.html">Reskill <span>Academy</span></a>
+<button class="menu-btn" aria-label="Menu">☰</button>
+<nav class="nav">
+<a href="index.html" data-page="home">Home</a>
+<a href="services.html" data-page="courses">Courses</a>
+<a href="about.html" data-page="about">About</a>
+<a href="team.html" data-page="team">Faculty</a>
+<a href="todo.html" data-page="enrol">Enrol</a>
+<a class="btn btn-primary" href="contact.html">Talk to us</a>
+</nav></div></header>
+<section class="hero"><div class="wrap">
+<p class="eyebrow">Enrolment path</p>
+<h1>Your checklist before day one.</h1>
+<p class="sub">Reskilling schools usually split apply → assess → pay → onboard. Follow the same sequence here.</p>
+<div class="steps">
+<div class="step"><span>1</span><h3>Choose a course</h3><p>Open the catalogue and pick a track.</p></div>
+<div class="step"><span>2</span><h3>Skills audit</h3><p>15-minute form so we place you in the right cohort.</p></div>
+<div class="step"><span>3</span><h3>Advisor call</h3><p>Confirm timetable, fees and laptop setup.</p></div>
+<div class="step"><span>4</span><h3>Onboarding kit</h3><p>Calendar, studio links and first brief.</p></div>
+</div>
+<p style="margin-top:28px"><a class="btn btn-primary" href="contact.html">Start with an advisor</a> <a class="btn btn-ghost" href="services.html">Back to courses</a></p>
+</div></section>
+<footer class="site-footer"><div class="wrap foot-grid">
+<div><strong>Reskill Academy</strong></div>
+<div><a href="index.html">Home</a></div>
+<div><a href="contact.html">Contact</a></div>
+</div></footer>
+<script src="script.js"></script>
+</body></html>
